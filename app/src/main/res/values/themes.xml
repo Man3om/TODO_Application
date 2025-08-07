@@ -15,4 +15,8 @@
         <item name="android:color">@android:color/transparent</item>
     </style>
 
+    <style name="TODOApp.FAB">
+        <item name="android:background">@drawable/fab_button_bg</item>
+    </style>
+
 </resources>
