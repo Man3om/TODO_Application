@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_tasks_list"
+        android:title="@string/tasks"
+        android:icon="@drawable/icon_awesome_list" />
+
+    <item android:id="@+id/Spacer"
+        android:title="Spacer" />
+
+    <item android:id="@+id/menu_settings"
+        android:title="@string/settings"
+        android:icon="@drawable/settings_icn"/>
+</menu>
