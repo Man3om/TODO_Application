@@ -5,7 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SplashScreenActivity"
-    android:background="@drawable/splash_screen_bg">
+    tools:context=".ui.SplashScreenActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:background="@drawable/splash_screen_bg"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
