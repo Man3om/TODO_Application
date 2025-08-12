@@ -1,32 +1,41 @@
 package com.example.todo_application.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.todo_application.R
 import com.example.todo_application.databinding.ActivityHomeBinding
+import com.example.todo_application.fragments.ListFragment
+import com.example.todo_application.fragments.SettingsFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+
+    private val TAG = "HomeActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.d(TAG, "HomeActivity Started")
         initNavBar()
         initFabButton()
 
     }
-    private fun initNavBar()
-    {
+    private fun initNavBar() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_tasks_list -> {
-                    TODO("Not yet implemented")
+                    Log.i(TAG, "menu_tasks_list selected")
+                    navigateFragment(ListFragment())
+                    true
                 }
 
                 R.id.menu_settings -> {
-                    TODO("Not yet implemented")
+                    Log.i(TAG, "menu_settings selected")
+                    navigateFragment(SettingsFragment())
+                    true
                 }
 
                 else -> false
@@ -38,12 +47,16 @@ class HomeActivity : AppCompatActivity() {
     private fun initFabButton()
     {
         binding.todoFab.setOnClickListener {
+            Log.d(TAG, "Fab Button Clicked")
             TODO("Not yet implemented")
         }
     }
 
     private fun navigateFragment(fragment: Fragment)
     {
-        TODO("Not yet implemented")
+        Log.d(TAG, "Navigating to $fragment")
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }
