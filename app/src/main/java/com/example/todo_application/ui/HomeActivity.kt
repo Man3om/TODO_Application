@@ -29,17 +29,14 @@ class HomeActivity : AppCompatActivity() {
                 R.id.menu_tasks_list -> {
                     Log.i(TAG, "menu_tasks_list selected")
                     navigateFragment(ListFragment())
-                    true
                 }
 
                 R.id.menu_settings -> {
                     Log.i(TAG, "menu_settings selected")
                     navigateFragment(SettingsFragment())
-                    true
                 }
-
-                else -> false
             }
+            return@setOnItemSelectedListener true
         }
         binding.bottomNavigationView.selectedItemId = R.id.menu_tasks_list
     }
