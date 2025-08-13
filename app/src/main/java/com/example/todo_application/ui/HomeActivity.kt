@@ -11,7 +11,6 @@ import com.example.todo_application.fragments.SettingsFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-
     private val TAG = "HomeActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +20,6 @@ class HomeActivity : AppCompatActivity() {
         Log.d(TAG, "HomeActivity Started")
         initNavBar()
         initFabButton()
-
     }
     private fun initNavBar() {
         binding.bottomNavigationView.setOnItemSelectedListener {
