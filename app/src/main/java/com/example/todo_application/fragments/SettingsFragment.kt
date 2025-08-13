@@ -9,12 +9,13 @@ import com.example.todo_application.R
 import com.example.todo_application.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
+    lateinit var binding: FragmentSettingsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -22,3 +23,4 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 }
+
