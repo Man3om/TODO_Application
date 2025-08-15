@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.todo_application.R
 import com.example.todo_application.databinding.ActivityHomeBinding
+import com.example.todo_application.fragments.AddingBottomSheetFragment
 import com.example.todo_application.fragments.ListFragment
 import com.example.todo_application.fragments.SettingsFragment
 
@@ -15,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d(TAG, "HomeActivity Started")
@@ -43,7 +45,8 @@ class HomeActivity : AppCompatActivity() {
     {
         binding.todoFab.setOnClickListener {
             Log.d(TAG, "Fab Button Clicked")
-            TODO("Not yet implemented")
+            val bottomSheetFragment = AddingBottomSheetFragment()
+            bottomSheetFragment.show(supportFragmentManager, null)
         }
     }
 
