@@ -1,11 +1,9 @@
 package com.example.todo_application.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.todo_application.R
 import com.example.todo_application.databinding.FragmentAddingBottomSheetBinding
 import com.example.todo_application.models.TodoCardData
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,7 +29,7 @@ class AddingBottomSheetFragment : BottomSheetDialogFragment() {
         val description = _binding.taskdescriptionid.text.toString()
         val isDone = false
 
-        task = TodoCardData(title, description, null , isDone)
+        task = TodoCardData(title, description, "10:30 AM" , isDone)
 
         _binding.AddingButton.setOnClickListener {
             saveTask?.invoke(task)
