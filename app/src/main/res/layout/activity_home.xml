@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_bg"
     tools:context=".ui.HomeActivity">
 
     <FrameLayout
@@ -17,9 +18,9 @@
         android:id="@+id/todo_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="@dimen/_18sdp"
         android:src="@drawable/add_icon"
         app:backgroundTint="@color/light_blue"
-        android:elevation="@dimen/_18sdp"
         app:layout_anchor="@id/BottomAppBar"
         app:tint="@color/white" />
 
@@ -28,17 +29,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:background="@color/white"
         android:backgroundTint="@color/white"
-        app:fabCradleMargin="@dimen/_8sdp">
+        app:backgroundTint="@color/white"
+        app:fabAlignmentMode="center"
+        app:fabAnchorMode="cradle"
+        app:fabCradleMarin="@dimen/_15sdp"
+        app:fabCradleVerticalOffset="@dimen/_8sdp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="@android:color/transparent"
-            app:itemActiveIndicatorStyle="@style/TODOApp.Custom.Indicator"
+            android:background="@android:color/transparent"
+            android:elevation="@dimen/_8sdp"
             app:itemIconSize="@dimen/_30sdp"
             app:itemIconTint="@color/todo_app_bar_selector"
+            app:itemTextColor="@color/todo_app_bar_selector"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/todo_menu_app_bar" />
     </com.google.android.material.bottomappbar.BottomAppBar>

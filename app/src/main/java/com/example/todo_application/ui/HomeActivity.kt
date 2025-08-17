@@ -12,6 +12,7 @@ import com.example.todo_application.fragments.SettingsFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var bottomSheetFragment: AddingBottomSheetFragment
     private val TAG = "HomeActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +46,13 @@ class HomeActivity : AppCompatActivity() {
     {
         binding.todoFab.setOnClickListener {
             Log.d(TAG, "Fab Button Clicked")
-            val bottomSheetFragment = AddingBottomSheetFragment()
+            bottomSheetFragment = AddingBottomSheetFragment()
             bottomSheetFragment.show(supportFragmentManager, null)
+        }
+
+        bottomSheetFragment.saveTask = { task ->
+            Log.d(TAG, "Saving Task")
+            TODO("Not yet implemented")
         }
     }
 
