@@ -57,6 +57,18 @@
         app:layout_constraintTop_toBottomOf="@id/taskdescriptionid" />
 
     <TextView
+        android:id="@+id/PleaseDate_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_select_date"
+        android:textSize="@dimen/_18ssp"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/SelectDate_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/grey" />
+
+    <TextView
         android:id="@+id/SelectTime_tv"
         style="@style/MediumText"
         android:layout_width="match_parent"
@@ -66,7 +78,19 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SelectDate_tv" />
+        app:layout_constraintTop_toBottomOf="@id/PleaseDate_tv" />
+
+    <TextView
+        android:id="@+id/PleaseTime_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_select_time"
+        android:textSize="@dimen/_18ssp"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/SelectTime_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/grey" />
 
     <Button
         android:id="@+id/AddingButton"
@@ -80,6 +104,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SelectTime_tv" />
+        app:layout_constraintTop_toBottomOf="@id/PleaseTime_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

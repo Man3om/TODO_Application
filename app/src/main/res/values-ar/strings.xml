@@ -12,4 +12,6 @@
     <string name="add_task">Save</string>
     <string name="to_do_list">To Do List</string>
     <string name="done">Done!</string>
+    <string name="please_select_date">Please Select Date</string>
+    <string name="please_select_time">Please Select Time</string>
 </resources>

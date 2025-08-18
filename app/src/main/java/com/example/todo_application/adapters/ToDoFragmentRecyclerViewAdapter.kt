@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.TaskCardBinding
-import com.example.todo_application.models.TodoCardData
 
-class ToDoFragmentRecyclerViewAdapter(private val items: List<TodoCardData>) :
+class ToDoFragmentRecyclerViewAdapter(private val items: List<Task>) :
     RecyclerView.Adapter<ToDoFragmentRecyclerViewAdapter.ViewHolder>() {
     private lateinit var binding: TaskCardBinding
     private val TAG = "ToDoFragmentRecyclerViewAdapter"
@@ -38,10 +38,10 @@ class ToDoFragmentRecyclerViewAdapter(private val items: List<TodoCardData>) :
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(val itemBinding: TaskCardBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(item: TodoCardData, position: Int) {
+        fun bind(item: Task, position: Int) {
             itemBinding.TaskTitleTv.text = item.title
-            itemBinding.TaskTimeTv.text = item.time
-            if (item.isCompleted) {
+            itemBinding.TaskTimeTv.text = item.time.toString()
+            if (item.isCompleted == true) {
                 itemBinding.RightMarkCard.visibility = View.INVISIBLE
                 itemBinding.DoneTextTv.visibility = View.VISIBLE
             }
