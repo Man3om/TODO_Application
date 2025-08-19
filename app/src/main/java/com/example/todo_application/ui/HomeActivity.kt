@@ -49,11 +49,6 @@ class HomeActivity : AppCompatActivity() {
             bottomSheetFragment = AddingBottomSheetFragment()
             bottomSheetFragment.show(supportFragmentManager, null)
         }
-
-        bottomSheetFragment.saveTask = { task ->
-            Log.d(TAG, "Saving Task")
-            TODO("Not yet implemented")
-        }
     }
 
     private fun navigateFragment(fragment: Fragment)
