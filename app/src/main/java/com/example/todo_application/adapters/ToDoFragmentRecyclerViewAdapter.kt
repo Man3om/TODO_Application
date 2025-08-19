@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo_application.database.MyDataBase
 import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.TaskCardBinding
 
@@ -31,6 +32,7 @@ class ToDoFragmentRecyclerViewAdapter(private val items: List<Task>) :
         holder.itemBinding.RightMarkCard.setOnClickListener {
             Log.d(TAG, "Right Mark Clicked")
             items[position].isCompleted = true
+            MyDataBase.getInstance().tasksDao().updateTask(items[position])
             notifyItemChanged(position)
         }
     }

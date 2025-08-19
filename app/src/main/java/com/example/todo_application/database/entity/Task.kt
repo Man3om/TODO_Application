@@ -13,7 +13,7 @@ data class Task(
     @ColumnInfo
     var description: String? = null,
     @ColumnInfo
-    var date: Long? = null,
+    var date: String? = null,
     @ColumnInfo
     var time: Long? = null,
     @ColumnInfo
