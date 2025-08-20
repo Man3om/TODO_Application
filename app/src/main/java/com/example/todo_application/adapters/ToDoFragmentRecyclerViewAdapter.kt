@@ -9,7 +9,7 @@ import com.example.todo_application.database.MyDataBase
 import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.TaskCardBinding
 
-class ToDoFragmentRecyclerViewAdapter(private val items: List<Task>) :
+class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
     RecyclerView.Adapter<ToDoFragmentRecyclerViewAdapter.ViewHolder>() {
     private lateinit var binding: TaskCardBinding
     private val TAG = "ToDoFragmentRecyclerViewAdapter"
@@ -37,12 +37,16 @@ class ToDoFragmentRecyclerViewAdapter(private val items: List<Task>) :
         }
     }
 
+     fun setNewTaskList(newTaskList: List<Task>) {
+        this.items = newTaskList
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int = items.size
 
     class ViewHolder(val itemBinding: TaskCardBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: Task, position: Int) {
             itemBinding.TaskTitleTv.text = item.title
-            itemBinding.TaskTimeTv.text = item.time.toString()
             if (item.isCompleted == true) {
                 itemBinding.RightMarkCard.visibility = View.INVISIBLE
                 itemBinding.DoneTextTv.visibility = View.VISIBLE

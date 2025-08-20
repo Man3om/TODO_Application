@@ -12,6 +12,8 @@ import com.example.todo_application.databinding.FragmentListBinding
 class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
 
+    private lateinit var adapter: ToDoFragmentRecyclerViewAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +25,13 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter = ToDoFragmentRecyclerViewAdapter(listOf())
+        getAllTasks()
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun getAllTasks() {
         val items = MyDataBase.getInstance().tasksDao().getAllTasks()
-        binding.recyclerView.adapter = ToDoFragmentRecyclerViewAdapter(items)
+        adapter.setNewTaskList(items)
     }
 }
