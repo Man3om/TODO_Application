@@ -8,17 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import com.example.todo_application.R
 import com.example.todo_application.database.MyDataBase
 import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.FragmentAddingBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.util.Calendar
+
 class AddingBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var _binding: FragmentAddingBottomSheetBinding
-
     private lateinit var calendar: Calendar
     private val TAG = "AddingBottomSheetFragment"
-    private lateinit var task: Task
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,28 +35,56 @@ class AddingBottomSheetFragment : BottomSheetDialogFragment() {
         calendar = Calendar.getInstance()
 
         _binding.AddingButton.setOnClickListener {
+            Log.d(TAG, "Save Button Clicked")
             saveTaskInDB()
         }
         _binding.PleaseDateTv.setOnClickListener {
+            Log.d(TAG, "Select Date Clicked")
             showDatePicker()
         }
         _binding.PleaseTimeTv.setOnClickListener {
+            Log.d(TAG, "Select Time Clicked")
             showTimePicker()
         }
     }
 
     private fun saveTaskInDB() {
-        Log.d(TAG, "Save Button Clicked")
-        task = Task(
-            title = _binding.tasknameid.text?.toString() ?: "No Title",
-            description = _binding.taskdescriptionid.text?.toString() ?: "No Description",
-            isCompleted = false,
-            timeStamp = calendar.time
-        )
-        Log.d(TAG, "Task: $task Inserted Successfully")
+        if (isValidData()) {
+            val task = Task(
+                title = _binding.tasknameid.text?.toString(),
+                description = _binding.taskdescriptionid.text?.toString(),
+                isCompleted = false,
+                timeStamp = calendar.time
+            )
+            Log.d(TAG, "Task: $task Inserted Successfully")
 
-        MyDataBase.getInstance().tasksDao().insertTask(task)
-        dismiss()
+            MyDataBase.getInstance().tasksDao().insertTask(task)
+            dismiss()
+        }
+    }
+
+    private fun isValidData(): Boolean {
+        if (_binding.tasknameid.text.isNullOrEmpty()) {
+            _binding.tasknameid.error = "Please Enter Task Name"
+            return false
+        }
+
+        if (_binding.taskdescriptionid.text.isNullOrEmpty()) {
+            _binding.taskdescriptionid.error = "Please Enter Task Description"
+            return false
+        }
+
+        if (_binding.PleaseDateTv.text == getString(R.string.please_select_date)) {
+            _binding.PleaseDateTv.error = "Please Select Date"
+            return false
+        }
+
+        if (_binding.PleaseTimeTv.text == getString(R.string.please_select_time)) {
+            _binding.PleaseTimeTv.error = "Please Select Time"
+            return false
+        }
+
+        return true
     }
 
     private fun showDatePicker() {
@@ -79,7 +107,6 @@ class AddingBottomSheetFragment : BottomSheetDialogFragment() {
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
         )
-
         dialog.show()
     }
 
