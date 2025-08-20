@@ -47,6 +47,7 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
     class ViewHolder(val itemBinding: TaskCardBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: Task, position: Int) {
             itemBinding.TaskTitleTv.text = item.title
+            itemBinding.TaskTimeTv.text = item.timeStamp.toString()
             if (item.isCompleted == true) {
                 itemBinding.RightMarkCard.visibility = View.INVISIBLE
                 itemBinding.DoneTextTv.visibility = View.VISIBLE
