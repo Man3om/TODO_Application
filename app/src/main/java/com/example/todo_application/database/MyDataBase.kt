@@ -11,7 +11,7 @@ import com.example.todo_application.typeConverter.DataTypeConverter
 
 
 @TypeConverters(value = [DataTypeConverter::class])
-@Database(entities = [Task::class], version = 1, exportSchema = true)
+@Database(entities = [Task::class], version = 1, exportSchema = false)
 abstract class MyDataBase : RoomDatabase() {
     abstract fun tasksDao(): TasksDao
 

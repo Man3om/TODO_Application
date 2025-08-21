@@ -4,7 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo_application.R
 import com.example.todo_application.database.MyDataBase
 import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.TaskCardBinding
@@ -51,10 +53,14 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
             if (item.isCompleted == true) {
                 itemBinding.RightMarkCard.visibility = View.INVISIBLE
                 itemBinding.DoneTextTv.visibility = View.VISIBLE
+                itemBinding.TaskTitleTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
+                itemBinding.TaskTimeTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
             }
             else{
                 itemBinding.RightMarkCard.visibility = View.VISIBLE
                 itemBinding.DoneTextTv.visibility = View.INVISIBLE
+                itemBinding.TaskTitleTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.light_blue))
+                itemBinding.TaskTimeTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.light_blue))
             }
         }
     }
