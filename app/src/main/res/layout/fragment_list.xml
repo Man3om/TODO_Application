@@ -33,6 +33,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
         app:cv_daySize="seventhWidth"
+        app:cv_weekHeaderResource="@layout/calendar_weekheader_layout"
         app:cv_dayViewResource="@layout/calendar_weekday_layout"
         tools:listitem="@layout/calendar_weekday_layout"/>
 

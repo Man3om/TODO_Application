@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.todo_application.database.entity.Task
+import java.sql.Date
 
 
 @Dao
@@ -23,7 +24,7 @@ interface TasksDao {
     fun getAllTasks(): List<Task>
 
     @Query("SELECT * FROM Task WHERE timeStamp = :date")
-    fun getAllTasksByDate(date: Long): List<Task>
+    fun getAllTasksByDate(date: Date): List<Task>
 
     @Query("SELECT * FROM Task WHERE id = :id")
     fun getTaskById(id: Int): Task?

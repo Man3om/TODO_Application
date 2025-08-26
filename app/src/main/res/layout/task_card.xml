@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    style="@style/PrimaryBackground"
     android:layout_margin="@dimen/_10sdp"
     android:elevation="@dimen/_18sdp"
     app:cardCornerRadius="@dimen/_15sdp">
@@ -50,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textColor="@color/black"
+            style="@style/MediumText"
             android:textSize="@dimen/_15sdp"
             app:drawableStartCompat="@drawable/discovery"
             app:layout_constraintStart_toStartOf="@id/TaskTitle_tv"

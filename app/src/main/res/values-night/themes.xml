@@ -33,7 +33,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="BottomSheetAddTask">
+    <style name="PrimaryBackground">
         <item name="android:background">@color/DarkModePrimary</item>
     </style>
 

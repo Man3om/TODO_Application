@@ -32,7 +32,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="BottomSheetAddTask">
+    <style name="PrimaryBackground">
         <item name="android:background">@color/white</item>
     </style>
 
