@@ -13,6 +13,8 @@ import com.example.todo_application.fragments.SettingsFragment
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var bottomSheetFragment: AddingBottomSheetFragment
+
+    private lateinit var listFragment: ListFragment
     private val TAG = "HomeActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,15 +23,15 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d(TAG, "HomeActivity Started")
-        initNavBar()
         initFabButton()
+        initNavBar()
     }
     private fun initNavBar() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_tasks_list -> {
                     Log.i(TAG, "menu_tasks_list selected")
-                    navigateFragment(ListFragment())
+                    navigateFragment(listFragment)
                 }
 
                 R.id.menu_settings -> {
@@ -44,10 +46,15 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initFabButton()
     {
+        listFragment = ListFragment()
         binding.todoFab.setOnClickListener {
             Log.d(TAG, "Fab Button Clicked")
             bottomSheetFragment = AddingBottomSheetFragment()
             bottomSheetFragment.show(supportFragmentManager, null)
+
+            bottomSheetFragment.onTaskAddedListener = {
+                listFragment.getTasksByDate()
+            }
         }
     }
 

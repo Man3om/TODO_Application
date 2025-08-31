@@ -13,12 +13,15 @@ import com.example.todo_application.database.MyDataBase
 import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.FragmentAddingBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.time.Instant
+import java.time.LocalDate
 import java.util.Calendar
 
 class AddingBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var _binding: FragmentAddingBottomSheetBinding
     private lateinit var calendar: Calendar
     private val TAG = "AddingBottomSheetFragment"
+    var onTaskAddedListener: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,11 +57,16 @@ class AddingBottomSheetFragment : BottomSheetDialogFragment() {
                 title = _binding.tasknameid.text?.toString(),
                 description = _binding.taskdescriptionid.text?.toString(),
                 isCompleted = false,
-                timeStamp = calendar.time
+                timeStamp = LocalDate.ofInstant(
+                    Instant.ofEpochMilli(calendar.timeInMillis),
+                    calendar.timeZone.toZoneId()
+                )
             )
             Log.d(TAG, "Task: $task Inserted Successfully")
 
             MyDataBase.getInstance().tasksDao().insertTask(task)
+
+            onTaskAddedListener?.invoke()
             dismiss()
         }
     }

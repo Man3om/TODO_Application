@@ -1,6 +1,7 @@
 package com.example.todo_application.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,6 @@ import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.view.WeekCalendarView
 import com.kizitonwose.calendar.view.WeekDayBinder
 import com.kizitonwose.calendar.view.WeekHeaderFooterBinder
-import java.sql.Date
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -47,7 +47,7 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = ToDoFragmentRecyclerViewAdapter(listOf())
-        getTasksByDate(null)
+        getTasksByDate()
         binding.recyclerView.adapter = adapter
 
         initCalenderView()
@@ -119,14 +119,21 @@ class ListFragment : Fragment() {
                 }
 
                 container.binding.root.setOnClickListener {
-                    val temp = selectedDate
-                    selectedDate = data.date
-                    calendarView.notifyDayChanged(data)
-                    temp?.let {
-                        calendarView.notifyWeekChanged(it)
+                    if ( data.date.month == selectedDate!!.month
+                        && data.date.dayOfMonth == selectedDate!!.dayOfMonth
+                        && data.date.year == selectedDate!!.year) {
+                        selectedDate = null
+                        binding.weekCalendar.notifyWeekChanged(data)
+                    } else {
+                        val temp = selectedDate
+                        selectedDate = data.date
+                        Log.d("TAG", "Selected Date: $selectedDate")
+                        calendarView.notifyDayChanged(data)
+                        temp?.let {
+                            calendarView.notifyWeekChanged(it)
+                        }
+                        getTasksByDate()
                     }
-
-                    getTasksByDate(data.date)
                 }
             }
         }
@@ -141,13 +148,17 @@ class ListFragment : Fragment() {
         calendarView.scrollToWeek(currentDate)
     }
 
-    private fun getTasksByDate(date: Date?) {
+    fun getTasksByDate() {
+        var tasks = MyDataBase.getInstance().tasksDao().getAllTasks()
 
-        val items = if (date == null)
-            MyDataBase.getInstance().tasksDao().getAllTasks()
-        else
-            MyDataBase.getInstance().tasksDao().getAllTasksByDate(date)
+        if (selectedDate != null) {
+            tasks = tasks.filter { task ->
+                task.timeStamp?.month == selectedDate!!.month
+                        && task.timeStamp?.dayOfMonth == selectedDate!!.dayOfMonth
+                        && task.timeStamp?.year == selectedDate!!.year
+            }
+        }
 
-        adapter.setNewTaskList(items)
+        adapter.setNewTaskList(tasks)
     }
 }

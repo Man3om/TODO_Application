@@ -3,7 +3,7 @@ package com.example.todo_application.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
+import java.time.LocalDate
 
 @Entity
 data class Task(
@@ -14,7 +14,7 @@ data class Task(
     @ColumnInfo
     var description: String? = null,
     @ColumnInfo
-    var timeStamp: Date? = null,
+    var timeStamp: LocalDate? = null,
     @ColumnInfo
     var isCompleted: Boolean? = false
 )

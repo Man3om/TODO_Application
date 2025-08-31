@@ -1,18 +1,23 @@
 package com.example.todo_application.typeConverter
 
 import androidx.room.TypeConverter
-import java.util.Date
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
 
 class DataTypeConverter {
 
     @TypeConverter
-    fun convertDateToLong(date: Date): Long {
-        return date.time
+    fun convertLocalDateToLong(localDate: LocalDate): Long {
+        return localDate
+            .atStartOfDay(ZoneId.systemDefault()) // Sets the time to 00:00 in the system's default time zone
+            .toInstant()                        // Converts to a moment in time (Instant)
+            .toEpochMilli()                     // Converts to milliseconds since the epoch
     }
 
     @TypeConverter
-    fun convertLongToDate(date: Long): Date {
-        return Date(date)
+    fun convertLongToLocalDate(epochMillis: Long): LocalDate {
+        return LocalDate.ofInstant(Instant.ofEpochMilli(epochMillis), ZoneId.systemDefault())
     }
 
 }
