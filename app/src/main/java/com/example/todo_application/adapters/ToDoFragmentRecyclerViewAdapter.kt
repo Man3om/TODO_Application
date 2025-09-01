@@ -11,7 +11,7 @@ import com.example.todo_application.database.MyDataBase
 import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.TaskCardBinding
 
-class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
+class ToDoFragmentRecyclerViewAdapter(private var items: MutableList<Task>) :
     RecyclerView.Adapter<ToDoFragmentRecyclerViewAdapter.ViewHolder>() {
     private lateinit var binding: TaskCardBinding
     private val TAG = "ToDoFragmentRecyclerViewAdapter"
@@ -50,11 +50,13 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
         holder.itemBinding.deleteLeftView.setOnClickListener {
             Log.d(TAG, "Delete Button Clicked")
             onItemDeletedListener?.invoke(item , position)
+            items.removeAt(position)
+            notifyItemRemoved(position)
         }
     }
 
      fun setNewTaskList(newTaskList: List<Task>) {
-        this.items = newTaskList
+        this.items = newTaskList.toMutableList()
         notifyDataSetChanged()
     }
 

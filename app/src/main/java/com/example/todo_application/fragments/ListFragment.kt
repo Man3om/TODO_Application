@@ -46,7 +46,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ToDoFragmentRecyclerViewAdapter(listOf())
+        adapter = ToDoFragmentRecyclerViewAdapter(mutableListOf())
         getTasksByDate()
         binding.recyclerView.adapter = adapter
 
@@ -60,8 +60,6 @@ class ListFragment : Fragment() {
         adapter.onItemDeletedListener = { task, position ->
             Log.d("TAG", "Item Deleted: $task")
             MyDataBase.getInstance().tasksDao().deleteTask(task)
-            adapter.notifyItemRemoved(position)
-            getTasksByDate()
         }
 
     }
