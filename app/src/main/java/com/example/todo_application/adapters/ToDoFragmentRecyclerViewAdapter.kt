@@ -16,6 +16,10 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
     private lateinit var binding: TaskCardBinding
     private val TAG = "ToDoFragmentRecyclerViewAdapter"
 
+    var onItemClickListener: ((Task , position: Int) -> Unit)? = null
+
+    var onitemdeletedListener: ((Task , position: Int) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -36,6 +40,14 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
             items[position].isCompleted = true
             MyDataBase.getInstance().tasksDao().updateTask(items[position])
             notifyItemChanged(position)
+        }
+
+        holder.itemBinding.root.setOnClickListener {
+            onItemClickListener?.invoke(item , position)
+        }
+
+        holder.itemBinding.deleteLeftView.setOnClickListener {
+            onitemdeletedListener?.invoke(item , position)
         }
     }
 

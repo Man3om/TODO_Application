@@ -26,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
         initFabButton()
         initNavBar()
     }
+
     private fun initNavBar() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {

@@ -51,6 +51,19 @@ class ListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         initCalenderView()
+
+        adapter.onItemClickListener = { task, position ->
+            Log.d("TAG", "Item Clicked: $task")
+
+        }
+
+        adapter.onitemdeletedListener = { task, position ->
+            Log.d("TAG", "Item Deleted: $task")
+            MyDataBase.getInstance().tasksDao().deleteTask(task)
+            adapter.notifyItemRemoved(position)
+            getTasksByDate()
+        }
+
     }
 
     private fun initCalenderView() {

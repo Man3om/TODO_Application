@@ -1,86 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zerobranch.layout.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/swipe_layout"
     style="@style/PrimaryBackground"
     android:layout_margin="@dimen/_10sdp"
-    android:elevation="@dimen/_18sdp"
-    app:cardCornerRadius="@dimen/_15sdp">
+    app:draggedItem="@id/TaskCardView"
+    app:leftItem="@id/delete_left_view"
+    app:swipeDirection="right"
+    app:isEnabledSwipe="true"
+    android:background="@drawable/delete_red_shape">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/TaskCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_15sdp">
+        android:elevation="@dimen/_18sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:contentPadding="@dimen/_15sdp">
 
-        <View
-            android:id="@+id/ViewLine"
-            android:layout_width="@dimen/_10sdp"
-            android:layout_height="0dp"
-            android:background="@color/light_blue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/BarrierView"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:backgroundTint="@android:color/transparent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/DoneText_tv"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <View
+                android:id="@+id/ViewLine"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="0dp"
+                android:background="@color/light_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/TaskTitle_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/light_blue"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:textSize="@dimen/_18sdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/ViewLine"
-            app:layout_constraintEnd_toStartOf="@id/BarrierView"
-            app:layout_constraintTop_toTopOf="@id/ViewLine"
-            tools:text="Play BasketBall" />
+            <View
+                android:id="@+id/BarrierView"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:backgroundTint="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/DoneText_tv"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/TaskTime_tv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            style="@style/MediumText"
-            android:textSize="@dimen/_15sdp"
-            app:drawableStartCompat="@drawable/discovery"
-            app:layout_constraintStart_toStartOf="@id/TaskTitle_tv"
-            app:layout_constraintTop_toBottomOf="@id/TaskTitle_tv"
-            app:layout_constraintEnd_toStartOf="@id/BarrierView"
-            tools:text="10:30 AM" />
+            <TextView
+                android:id="@+id/TaskTitle_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textColor="@color/light_blue"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/BarrierView"
+                app:layout_constraintStart_toEndOf="@id/ViewLine"
+                app:layout_constraintTop_toTopOf="@id/ViewLine"
+                tools:text="Play BasketBall" />
 
-        <ImageView
-            android:id="@+id/RightMark_Card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/task_card_label"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@id/ViewLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ViewLine" />
+            <TextView
+                android:id="@+id/TaskTime_tv"
+                style="@style/MediumText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_15sdp"
+                app:drawableStartCompat="@drawable/discovery"
+                app:layout_constraintEnd_toStartOf="@id/BarrierView"
+                app:layout_constraintStart_toStartOf="@id/TaskTitle_tv"
+                app:layout_constraintTop_toBottomOf="@id/TaskTitle_tv"
+                tools:text="10:30 AM" />
 
-        <TextView
-            android:id="@+id/DoneText_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/done"
-            android:textColor="@color/Lime"
-            android:textSize="@dimen/_22sdp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/ViewLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ViewLine" />
+            <ImageView
+                android:id="@+id/RightMark_Card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/task_card_label"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/ViewLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ViewLine" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/DoneText_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/done"
+                android:textColor="@color/Lime"
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/ViewLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ViewLine" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/delete_left_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:adjustViewBounds="true"
+        android:background="@color/delete_button"
+        android:paddingEnd="24dp"
+        android:paddingStart="30dp"
+        android:src="@drawable/delete_button"/>
+</com.zerobranch.layout.SwipeLayout>

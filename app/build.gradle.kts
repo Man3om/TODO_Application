@@ -45,6 +45,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.room.runtime)
+    implementation(libs.swipelayout)
     ksp(libs.androidx.room.compiler)
     implementation(libs.calender.view)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
