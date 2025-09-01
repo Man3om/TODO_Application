@@ -57,7 +57,7 @@ class ListFragment : Fragment() {
 
         }
 
-        adapter.onitemdeletedListener = { task, position ->
+        adapter.onItemDeletedListener = { task, position ->
             Log.d("TAG", "Item Deleted: $task")
             MyDataBase.getInstance().tasksDao().deleteTask(task)
             adapter.notifyItemRemoved(position)

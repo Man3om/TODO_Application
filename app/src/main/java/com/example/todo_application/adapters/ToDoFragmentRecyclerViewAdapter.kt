@@ -18,7 +18,7 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
 
     var onItemClickListener: ((Task , position: Int) -> Unit)? = null
 
-    var onitemdeletedListener: ((Task , position: Int) -> Unit)? = null
+    var onItemDeletedListener: ((Task, position: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -49,7 +49,7 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
 
         holder.itemBinding.deleteLeftView.setOnClickListener {
             Log.d(TAG, "Delete Button Clicked")
-            onitemdeletedListener?.invoke(item , position)
+            onItemDeletedListener?.invoke(item , position)
         }
     }
 
