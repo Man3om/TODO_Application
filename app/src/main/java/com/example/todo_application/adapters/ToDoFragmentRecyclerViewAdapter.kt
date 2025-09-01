@@ -43,10 +43,12 @@ class ToDoFragmentRecyclerViewAdapter(private var items: List<Task>) :
         }
 
         holder.itemBinding.root.setOnClickListener {
+            Log.d(TAG, "Item Clicked")
             onItemClickListener?.invoke(item , position)
         }
 
         holder.itemBinding.deleteLeftView.setOnClickListener {
+            Log.d(TAG, "Delete Button Clicked")
             onitemdeletedListener?.invoke(item , position)
         }
     }
