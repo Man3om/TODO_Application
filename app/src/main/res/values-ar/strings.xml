@@ -14,4 +14,8 @@
     <string name="done">Done!</string>
     <string name="please_select_date">Please Select Date</string>
     <string name="please_select_time">Please Select Time</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="this_is_title">This is title</string>
+    <string name="task_details">Task details</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

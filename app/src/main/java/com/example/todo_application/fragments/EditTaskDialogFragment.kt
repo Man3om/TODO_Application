@@ -32,12 +32,12 @@ class EditTaskDialogFragment() : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btnSave.setOnClickListener {
+        task.title = binding.titleEt.text.toString()
+        task.description = binding.detailsEt.text.toString()
+        binding.saveBtn.setOnClickListener {
             updateTask()
             dismiss()
         }
-
     }
 
     private fun updateTask() {

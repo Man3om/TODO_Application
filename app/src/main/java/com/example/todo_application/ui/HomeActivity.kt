@@ -35,7 +35,6 @@ class HomeActivity : AppCompatActivity() {
             editTaskFragment.task = task
             editTaskFragment.show(supportFragmentManager, null)
         }
-
     }
 
     private fun initNavBar() {
