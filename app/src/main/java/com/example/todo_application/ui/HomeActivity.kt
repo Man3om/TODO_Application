@@ -7,14 +7,15 @@ import androidx.fragment.app.Fragment
 import com.example.todo_application.R
 import com.example.todo_application.databinding.ActivityHomeBinding
 import com.example.todo_application.fragments.AddingBottomSheetFragment
+import com.example.todo_application.fragments.EditTaskDialogFragment
 import com.example.todo_application.fragments.ListFragment
 import com.example.todo_application.fragments.SettingsFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var bottomSheetFragment: AddingBottomSheetFragment
-
     private lateinit var listFragment: ListFragment
+    private lateinit var editTaskFragment : EditTaskDialogFragment
     private val TAG = "HomeActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,16 @@ class HomeActivity : AppCompatActivity() {
         Log.d(TAG, "HomeActivity Started")
         initFabButton()
         initNavBar()
+        handleEditTaskFragment()
+    }
+
+    private fun handleEditTaskFragment() {
+        editTaskFragment = EditTaskDialogFragment()
+        listFragment.navigateToEditTaskFragment = { task , position ->
+            editTaskFragment.task = task
+            editTaskFragment.show(supportFragmentManager, null)
+        }
+
     }
 
     private fun initNavBar() {

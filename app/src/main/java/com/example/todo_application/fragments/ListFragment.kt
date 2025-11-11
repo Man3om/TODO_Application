@@ -13,6 +13,7 @@ import com.example.todo_application.adapters.ToDoFragmentRecyclerViewAdapter
 import com.example.todo_application.adapters.WeekDayViewContainer
 import com.example.todo_application.adapters.WeekHeaderViewContainer
 import com.example.todo_application.database.MyDataBase
+import com.example.todo_application.database.entity.Task
 import com.example.todo_application.databinding.CalendarWeekdayLayoutBinding
 import com.example.todo_application.databinding.CalendarWeekheaderLayoutBinding
 import com.example.todo_application.databinding.FragmentListBinding
@@ -34,6 +35,8 @@ class ListFragment : Fragment() {
     private lateinit var calendarView: WeekCalendarView
     private lateinit var adapter: ToDoFragmentRecyclerViewAdapter
 
+    var navigateToEditTaskFragment : ((Task, Int) -> Unit)? = null
+
     private val TAG = "FragmentList"
 
     private var selectedDate: LocalDate? = null
@@ -41,7 +44,7 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -57,7 +60,7 @@ class ListFragment : Fragment() {
 
         adapter.onItemClickListener = { task, position ->
             Log.d(TAG, "Item Clicked: $task")
-
+            navigateToEditTaskFragment?.invoke(task, position)
         }
 
         adapter.onItemDeletedListener = { task, position ->
