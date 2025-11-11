@@ -1,5 +1,6 @@
 package com.example.todo_application.fragments
 
+import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,6 +34,8 @@ class ListFragment : Fragment() {
     private lateinit var calendarView: WeekCalendarView
     private lateinit var adapter: ToDoFragmentRecyclerViewAdapter
 
+    private val TAG = "FragmentList"
+
     private var selectedDate: LocalDate? = null
 
     override fun onCreateView(
@@ -53,12 +56,12 @@ class ListFragment : Fragment() {
         initCalenderView()
 
         adapter.onItemClickListener = { task, position ->
-            Log.d("TAG", "Item Clicked: $task")
+            Log.d(TAG, "Item Clicked: $task")
 
         }
 
         adapter.onItemDeletedListener = { task, position ->
-            Log.d("TAG", "Item Deleted: $task")
+            Log.d(TAG, "Item Deleted: $task")
             MyDataBase.getInstance().tasksDao().deleteTask(task)
         }
 
@@ -130,6 +133,7 @@ class ListFragment : Fragment() {
                 }
 
                 container.binding.root.setOnClickListener {
+                    Log.d(TAG,"Se")
                     if ( data.date.month == selectedDate!!.month
                         && data.date.dayOfMonth == selectedDate!!.dayOfMonth
                         && data.date.year == selectedDate!!.year) {
