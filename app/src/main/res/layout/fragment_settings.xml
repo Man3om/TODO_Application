@@ -41,16 +41,23 @@
         android:paddingTop="@dimen/_15sdp"
         android:textSize="@dimen/_15ssp"/>
 
-    <androidx.appcompat.widget.AppCompatSpinner
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Spinner_Lang"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:padding="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/Language_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.7"
-        android:layout_marginTop="@dimen/_15sdp" />
+        app:layout_constraintTop_toBottomOf="@id/Language_tv">
+
+        <AutoCompleteTextView
+            android:id="@+id/LanguageHint_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/select_an_option"
+            android:inputType="none"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/Mode_tv"
@@ -66,15 +73,23 @@
         android:paddingTop="@dimen/_15sdp"
         android:textSize="@dimen/_15ssp"/>
 
-    <androidx.appcompat.widget.AppCompatSpinner
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Spinner_Mode"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:padding="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/Mode_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.7"
-        android:layout_marginTop="@dimen/_15sdp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/Mode_tv">
+
+        <AutoCompleteTextView
+            android:id="@+id/ModeHint_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/select_an_option"
+            android:inputType="none"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

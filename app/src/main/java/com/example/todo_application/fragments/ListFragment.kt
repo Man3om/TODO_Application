@@ -1,11 +1,12 @@
 package com.example.todo_application.fragments
 
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.todo_application.R
@@ -35,7 +36,7 @@ class ListFragment : Fragment() {
     private lateinit var calendarView: WeekCalendarView
     private lateinit var adapter: ToDoFragmentRecyclerViewAdapter
 
-    var navigateToEditTaskFragment : ((Task, Int) -> Unit)? = null
+    var navigateToEditTaskFragment: ((Task, Int) -> Unit)? = null
 
     private val TAG = "FragmentList"
 
@@ -53,7 +54,12 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = ToDoFragmentRecyclerViewAdapter(mutableListOf())
-        getTasksByDate()
+        try {
+            getTasksByDate()
+        } catch (e : Exception) {
+            e.printStackTrace()
+            Toast.makeText(requireActivity(), "No Data in This Day", LENGTH_LONG).show()
+        }
         binding.recyclerView.adapter = adapter
 
         initCalenderView()
@@ -99,7 +105,7 @@ class ListFragment : Fragment() {
 
                 monthDayTextView.text = data.date.dayOfMonth.toString()
                 weekDayTextView.text =
-                    data.date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                    data.date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
 
                 if (selectedDate == data.date) {
                     monthDayTextView.setTextColor(
@@ -136,10 +142,18 @@ class ListFragment : Fragment() {
                 }
 
                 container.binding.root.setOnClickListener {
-                    Log.d(TAG,"Se")
-                    if ( data.date.month == selectedDate!!.month
+                    Log.d(TAG, "Selected Date: $selectedDate")
+                    if(selectedDate== null){
+                        selectedDate = data.date
+                        calendarView.notifyDayChanged(data)
+                        getTasksByDate()
+                        return@setOnClickListener
+                    }
+
+                    if (data.date.month == selectedDate!!.month
                         && data.date.dayOfMonth == selectedDate!!.dayOfMonth
-                        && data.date.year == selectedDate!!.year) {
+                        && data.date.year == selectedDate!!.year
+                    ) {
                         selectedDate = null
                         binding.weekCalendar.notifyWeekChanged(data)
                     } else {

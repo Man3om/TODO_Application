@@ -16,7 +16,7 @@ class ToDoFragmentRecyclerViewAdapter(private var items: MutableList<Task>) :
     private lateinit var binding: TaskCardBinding
     private val TAG = "ToDoFragmentRecyclerViewAdapter"
 
-    var onItemClickListener: ((Task , position: Int) -> Unit)? = null
+    var onItemClickListener: ((Task, position: Int) -> Unit)? = null
 
     var onItemDeletedListener: ((Task, position: Int) -> Unit)? = null
 
@@ -35,27 +35,29 @@ class ToDoFragmentRecyclerViewAdapter(private var items: MutableList<Task>) :
         val item = items[position]
         holder.bind(item, position)
 
-        holder.itemBinding.RightMarkCard.setOnClickListener {
+        binding.RightMarkCard.setOnClickListener {
             Log.d(TAG, "Right Mark Clicked")
             items[position].isCompleted = true
             MyDataBase.getInstance().tasksDao().updateTask(items[position])
             notifyItemChanged(position)
         }
 
-        holder.itemBinding.root.setOnClickListener {
+        binding.TaskCardView.setOnClickListener {
             Log.d(TAG, "Item Clicked")
-            onItemClickListener?.invoke(item , position)
+            onItemClickListener?.invoke(item, position)
         }
 
-        holder.itemBinding.deleteLeftView.setOnClickListener {
-            Log.d(TAG, "Delete Button Clicked")
-            onItemDeletedListener?.invoke(item , position)
-            items.removeAt(position)
-            notifyItemRemoved(position)
+        binding.deleteLeftView.setOnClickListener {
+            if(!binding.swipeLayout.isClosed){
+                Log.d(TAG, "Delete Button Clicked")
+                onItemDeletedListener?.invoke(item, position)
+                items.removeAt(position)
+                notifyItemRemoved(position)
+            }
         }
     }
 
-     fun setNewTaskList(newTaskList: List<Task>) {
+    fun setNewTaskList(newTaskList: List<Task>) {
         this.items = newTaskList.toMutableList()
         notifyDataSetChanged()
     }
@@ -69,14 +71,33 @@ class ToDoFragmentRecyclerViewAdapter(private var items: MutableList<Task>) :
             if (item.isCompleted == true) {
                 itemBinding.RightMarkCard.visibility = View.INVISIBLE
                 itemBinding.DoneTextTv.visibility = View.VISIBLE
-                itemBinding.TaskTitleTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
-                itemBinding.TaskTimeTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
-            }
-            else{
+                itemBinding.TaskTitleTv.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.green
+                    )
+                )
+                itemBinding.TaskTimeTv.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.green
+                    )
+                )
+            } else {
                 itemBinding.RightMarkCard.visibility = View.VISIBLE
                 itemBinding.DoneTextTv.visibility = View.INVISIBLE
-                itemBinding.TaskTitleTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.light_blue))
-                itemBinding.TaskTimeTv.setTextColor(ContextCompat.getColor(itemView.context, R.color.light_blue))
+                itemBinding.TaskTitleTv.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.light_blue
+                    )
+                )
+                itemBinding.TaskTimeTv.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.light_blue
+                    )
+                )
             }
         }
     }

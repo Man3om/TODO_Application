@@ -32,7 +32,11 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="PrimaryBackground">
+    <style name="ToolBarBackground">
+        <item name="android:background">@color/light_blue</item>
+    </style>
+
+    <style name="DialogsBackground">
         <item name="android:background">@color/white</item>
     </style>
 

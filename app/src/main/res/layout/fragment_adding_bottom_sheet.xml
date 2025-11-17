@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/PrimaryBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    style="@style/DialogsBackground"
     tools:context=".fragments.AddingBottomSheetFragment">
 
     <TextView
@@ -60,13 +60,13 @@
         android:id="@+id/PleaseDate_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/please_select_date"
-        android:textSize="@dimen/_18ssp"
         android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/SelectDate_tv"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/please_select_date"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/grey" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SelectDate_tv" />
 
     <TextView
         android:id="@+id/SelectTime_tv"
@@ -84,13 +84,13 @@
         android:id="@+id/PleaseTime_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/please_select_time"
-        android:textSize="@dimen/_18ssp"
         android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/SelectTime_tv"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/please_select_time"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/grey" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SelectTime_tv" />
 
     <Button
         android:id="@+id/AddingButton"
@@ -98,9 +98,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_18sdp"
+        android:backgroundTint="@color/light_blue"
         android:text="@string/add_task"
         android:textColor="@color/white"
-        android:backgroundTint="@color/light_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,21 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings">Settings</string>
-    <string name="tasks">Tasks</string>
-    <string name="language">Language</string>
-    <string name="mode">Mode</string>
-    <string name="add_new_task">Add new Task</string>
-    <string name="task_name">Enter Your Task</string>
-    <string name="enter_your_task_details">enter your task details</string>
-    <string name="select_date">Select Date</string>
-    <string name="select_time">Select Time</string>
-    <string name="add_task">Save</string>
-    <string name="to_do_list">To Do List</string>
-    <string name="done">Done!</string>
-    <string name="please_select_date">Please Select Date</string>
-    <string name="please_select_time">Please Select Time</string>
-    <string name="edit_task">Edit Task</string>
-    <string name="this_is_title">This is title</string>
-    <string name="task_details">Task details</string>
-    <string name="save_changes">Save Changes</string>
+<string name="app_name">تطبيق المهام</string>
+<string name="settings">الإعدادات</string>
+<string name="tasks">المهام</string>
+<string name="hello_blank_fragment">مرحباً بالجزئية الفارغة</string>
+<string name="language">اللغة</string>
+<string name="mode">الوضع</string>
+<string name="add_new_task">إضافة مهمة جديدة</string>
+<string name="task_name">أدخل مهمتك</string>
+<string name="enter_your_task_details">أدخل تفاصيل مهمتك</string>
+<string name="select_date">اختر التاريخ</string>
+<string name="select_time">اختر الوقت</string>
+<string name="add_task">حفظ</string>
+<string name="to_do_list">قائمة المهام</string>
+<string name="done">تم!</string>
+<string name="please_select_date">الرجاء اختيار التاريخ</string>
+<string name="please_select_time">الرجاء اختيار الوقت</string>
+<string name="edit_task">تعديل المهمة</string>
+<string name="this_is_title">هذا هو العنوان</string>
+<string name="task_details">تفاصيل المهمة</string>
+<string name="save_changes">حفظ التغييرات</string>
+<string name="select_an_option">اختر خيار</string>
+
+<string-array name="Lang">
+    <item>العربية</item>
+    <item>الإنجليزية</item>
+</string-array>
+
+<string-array name="Mode">
+    <item>فاتح</item>
+    <item>ليلي</item>
+</string-array>
 </resources>

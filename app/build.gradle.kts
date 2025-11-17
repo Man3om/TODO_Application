@@ -28,6 +28,9 @@ android {
             )
         }
     }
+    androidResources {
+        generateLocaleConfig = true
+    }
 
     buildFeatures {
         viewBinding = true

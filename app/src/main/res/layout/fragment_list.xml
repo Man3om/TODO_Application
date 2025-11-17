@@ -10,7 +10,7 @@
         android:id="@+id/Toolbar_List_Fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/light_blue"
+        style="@style/ToolBarBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
-        app:cv_daySize="seventhWidth"
+        app:cv_daySize="freeForm"
         app:cv_weekHeaderResource="@layout/calendar_weekheader_layout"
         app:cv_dayViewResource="@layout/calendar_weekday_layout"
         tools:listitem="@layout/calendar_weekday_layout"/>
